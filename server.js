@@ -21,5 +21,5 @@ app.use('/', routes)
 const port = config.server.port
 const host = config.server.host
 app.listen(port, host, () => {
-    console.log(`app listen: http://${host}:${port}`)
+    console.log(`app listen: http://${host}:${port}/item`)
 });

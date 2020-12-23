@@ -53,3 +53,37 @@ exports.update = (req, res) => {
     });
     con.end();
 }
+
+//追加
+exports.delete = (req, res) => {
+    let id = req.params.id;
+    let params = [id];
+    const sql = 'DELETE FROM items WHERE id = ?;';
+
+    const con = mysql.createConnection(config.mysql)
+    con.connect();
+    con.query(sql, params, (err) => {
+        if (err) {
+            res.redirect('/item/edit/' + id);
+        } else {
+            res.redirect('/item');
+        }
+    });
+    con.end();
+}
+
+exports.search = (req, res) => {
+    let keyword = req.query.keyword;
+    console.log(keyword);
+    //SELECT * FROM items WHERE name LIKE '%キーワード%';
+    const sql = "SELECT * FROM items WHERE name LIKE '%" + keyword + "%';";
+
+    const con = mysql.createConnection(config.mysql)
+    con.connect();
+    con.query(sql, (err, results) => {
+        if (err) throw err;
+        let data = { items: results, err: err };
+        res.render('item/index', data);
+    });
+    con.end();
+}

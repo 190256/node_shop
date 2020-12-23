@@ -12,4 +12,9 @@ router.post('/item/add', itemController.add)
 router.get('/item/edit/:id', itemController.edit)
 router.post('/item/update/:id', itemController.update)
 
+//追加
+router.post('/item/delete/:id', itemController.delete)
+
+router.get('/item/search/', itemController.search)
+
 module.exports = router

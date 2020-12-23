@@ -15,4 +15,8 @@
     <button class="btn btn-primary">更新</button>
     <a href="/item" class="btn btn-outline-primary">戻る</a>
   </form>
+
+  <form action="/item/delete/<%= item.id %>" method="post" onClick="return confirm('削除しますか？')">
+    <button class="btn btn-danger">削除</button>
+  </form>
 </div>
